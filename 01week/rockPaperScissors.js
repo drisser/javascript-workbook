@@ -19,7 +19,7 @@ function rockPaperScissors(hand1, hand2) {
       return 'Hand 1 wins!';
     } else if (move1a === 'paper' && move2a === 'scissors'){
       return 'Hand 2 wins!';
-    } else if (move1a === 'rock' && move2a === 'scissors'){
+    } else if (move1a === 'rock' && move2a === 'paper'){
       return 'Hand 1 wins!';
     } else if (move1a === 'rock' && move2a === 'scissors'){
       return 'Hand 2 wins!';
