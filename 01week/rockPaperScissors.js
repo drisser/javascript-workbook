@@ -7,12 +7,29 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
 function rockPaperScissors(hand1, hand2) {
-
-  // Write code here
-
-}
+  const move1 = hand1.trim();
+  const move2 = hand2.trim();
+  const move1a = move1.toLowerCase();
+  const move2a = move2.toLowerCase();
+  if (move1a && move2a === 'rock' || 'scissors' || 'paper'){
+    if (move1a === move2a){
+      return 'Tie!';
+    } else if (move1a === 'paper' && move2a === 'rock'){
+      return 'Hand 1 wins!';
+    } else if (move1a === 'paper' && move2a === 'scissors'){
+      return 'Hand 2 wins!';
+    } else if (move1a === 'rock' && move2a === 'scissors'){
+      return 'Hand 1 wins!';
+    } else if (move1a === 'rock' && move2a === 'scissors'){
+      return 'Hand 2 wins!';
+    } else if (move1a === 'scissors' && move2a === 'paper'){
+      return 'Hand 1 wins!';
+    } else if (move1a === 'scissors' && move2a === 'rock'){
+      return 'Hand 2 wins!';
+    }
+  } return 'please enter a valid move'; 
+} 
 
 function getPrompt() {
   rl.question('hand1: ', (answer1) => {
