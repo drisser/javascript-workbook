@@ -1,19 +1,12 @@
 // 1 Write a javascript program to display the current date and time
-const today = new Date();
-const dd = today.getDate();
-const mm = today.getMonth() + 1;
-const yyyy = today.getFullYear();
-
-if (dd < 10) {
-  dd = '0' + dd
+const returnDate = () => {
+  const today = new Date();
+  const dd = today.getDate();
+  const mm = today.getMonth() + 1;
+  const yyyy = today.getFullYear();
+  return mm + '/' + dd + '/' + yyyy;
 }
-
-if (mm < 10) {
-  mm = '0' + mm
-}
-
-today = mm + '/' + dd + '/' + yyyy;
-document.write(today);
+returnDate();
 
 // 2 Write a JavaScript program to convert a number to a string
 const makeString = (num) => String(num)
