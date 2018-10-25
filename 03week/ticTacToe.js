@@ -1,5 +1,106 @@
 'use strict';
 
+//MY CODE PLAN!
+
+//validate the user input - it must be equal to either 0, 1, or 2
+const validInputArr = [0, 1, 2]
+
+const checkInput = (input) => {
+  return validInputArr.indexOf(input) != -1
+}
+
+const validate = (row, column) => {
+  return checkInput(row) && checkInput(column)
+}
+
+//check to see if the selected row and column are occupied or not - function isPositionOpen = if index[row][column] != ''
+const isPositionOpen = (row, column) => {
+  return board[row][column] == ' '
+}
+
+//take user input and turn it into either an X or an O on the board - function placeMove = board[1][1] = 'X'
+const placeMoveX = (row, column) => {
+  board[row][column] = 'X';
+  console.log(board);
+}
+
+const placeMoveO = (row, column) => {
+  board[row][column] = 'O';
+  console.log(board);
+}
+
+//check for win using win conditions listed below
+function horizontalWin() {
+  if ((board[0][0] == 'X') && (board[0][1] == 'X') && (board[0][2] == 'X')){
+    return true
+  } else if ((board[1][0] =='X') && (board[1][1] == 'X') && (board[1][2] == 'X')){
+    return true
+  } else if ((board[2][0] == 'X') && (board[2][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[0][1] == 'O') && (board[0][2] == 'O')){
+    return true
+  } else if ((board[1][0] =='O') && (board[1][1] == 'O') && (board[1][2] == 'O')){
+    return true
+  } else if ((board[2][0] == 'O') && (board[2][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+function verticalWin() {
+  if ((board[0][0] == 'X') && (board[1][0] == 'X')  && (board[2][0] == 'X')){
+    return true
+  } else if ((board[0][1] == 'X') && (board[1][1] == 'X') && (board[2][1] == 'X')){
+    return true
+  } else if ((board[0][2] == 'X') && (board[1][2] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[1][0] == 'O')  && (board[2][0] == 'O')){
+    return true
+  } else if ((board[0][1] == 'O') && (board[1][1] == 'O') && (board[2][1] == 'O')){
+    return true
+  } else if ((board[0][2] == 'O') && (board[1][2] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+function diagonalWin() {
+  if ((board[0][2] == 'X') && (board[1][1] == 'X') && (board[2][0] == 'X')){
+    return true
+  } else if ((board[0][0] == 'X') && (board[1][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][2] == 'O') && (board[1][1] == 'O') && (board[2][0] == 'O')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[1][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+function checkForWin() {
+  if (diagonalWin()){
+    return true
+  } else if (horizontalWin()){
+    return true
+  } else if (verticalWin()){
+    return true
+  } else {
+    return false
+  }
+}
+
+//if no win is determined, switch players and rerun the function
+const changePlayer = () =>{
+  if (playerTurn = 'X'){
+    let playerTurn = 'O'
+  } else if (playerTurn = 'O'){
+    let playerTurn = 'X'
+  }
+}
+
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -23,24 +124,25 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-function horizontalWin() {
-  // Your code here
-}
-
-function verticalWin() {
-  // Your code here
-}
-
-function diagonalWin() {
-  // Your code here
-}
-
-function checkForWin() {
-  // Your code here
-}
-
+//here is my full function pulling all the other small functions together
 function ticTacToe(row, column) {
-  // Your code here
+  if (validate(row, column)){
+    if (isPositionOpen(row, column)){
+      if (playerTurn = 'X'){
+        placeMoveX(row, column);
+      } else {
+        placeMoveO(row, column);
+      }
+    } else {
+      return 'that position is not open'
+    }  
+  } else {
+    return ' please enter a valid position'
+  } 
+  if (checkForWin()){
+    return playerTurn + ' wins!'
+  } else changePlayer();
+  getPrompt();
 }
 
 function getPrompt() {
