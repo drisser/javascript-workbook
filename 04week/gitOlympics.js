@@ -6,4 +6,4 @@ const printListOfOlympians = (array) => {
     });
 }
 
-printListOfOlympians(['bob', 'joe', 'mary', 'ben', 'max']);  
+printListOfOlympians(['bob', 'joe', 'mary', 'ben', 'max']);
