@@ -94,7 +94,7 @@ function checkForWin() {
 
 //if no win is determined, switch players and rerun the function
 const changePlayer = () =>{
-  if (playerTurn = 'X'){
+  if (playerTurn == 'X'){
     let playerTurn = 'O'
   } else if (playerTurn = 'O'){
     let playerTurn = 'X'
@@ -128,11 +128,12 @@ function printBoard() {
 function ticTacToe(row, column) {
   if (validate(row, column)){
     if (isPositionOpen(row, column)){
-      if (playerTurn = 'X'){
+      if (playerTurn == 'X'){
         placeMoveX(row, column);
       } else {
         placeMoveO(row, column);
       }
+      
     } else {
       return 'that position is not open'
     }  
@@ -142,8 +143,12 @@ function ticTacToe(row, column) {
   if (checkForWin()){
     return playerTurn + ' wins!'
   } else changePlayer();
-  getPrompt();
+
 }
+
+// getPrompt();
+
+
 
 function getPrompt() {
   printBoard();
