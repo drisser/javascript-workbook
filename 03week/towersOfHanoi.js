@@ -8,9 +8,9 @@ const rl = readline.createInterface({
 });
 
 let stacks = {
-  a: [1],
+  a: [4, 3, 2, 1],
   b: [],
-  c: [4, 3, 2]
+  c: []
 };
 
 const printStacks = () => {
@@ -54,6 +54,7 @@ const isLegal = (startStack, endStack) => {
   } else return true
 }
 
+//this function checks for the win condition, which requires that all the pieces be moved in order to either stacks.b or stacks.c
 const checkForWin = () => {
   let checkStackA = stacks.c.toString();
   let checkStackB = stacks.b.toString();
@@ -64,12 +65,14 @@ const checkForWin = () => {
   } else return false
 }
 
+//this functions runs when a win is declared and resets the stacks object back to the default arrangement
 const reset = () => {
   stacks.a = [1, 2, 3, 4];
   stacks.b = [];
   stacks.c = [];
 }
 
+//the master function calls the above functions using several conditionals
 const towersOfHanoi = (startStack, endStack) => {
   if (validate(startStack, endStack)) {
     if (isLegal(startStack, endStack)) {
