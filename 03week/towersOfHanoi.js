@@ -8,18 +8,18 @@ const rl = readline.createInterface({
 });
 
 let stacks = {
-  a: [4, 3, 2, 1],
+  a: [1],
   b: [],
-  c: []
+  c: [4, 3, 2]
 };
 
-function printStacks() {
+const printStacks = () => {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
 
-function movePiece(startStack, endStack){
+const movePiece = (startStack, endStack) => {
   let endNum = stacks[startStack].pop();
   stacks[endStack].push(endNum);
 }
@@ -34,7 +34,7 @@ const validate = (startStack, endStack) => {
   return checkInput(startStack) && checkInput(endStack)
 }
 
-function isLegal(startStack, endStack) {
+const isLegal = (startStack, endStack) => {
   let startStackValue = stacks[startStack][stacks[startStack].length - 1];
   let endStackValue = stacks[endStack][stacks[endStack].length - 1];
   if (startStack == endStack) {
@@ -46,27 +46,36 @@ function isLegal(startStack, endStack) {
   } else return true
 }
 
-function checkForWin() {
-  let checkStack = stacks.c.toString();
-  if (checkStack == '4,3,2,1') {
-    return 'win'
+const checkForWin = () => {
+  let checkStackA = stacks.c.toString();
+  let checkStackB = stacks.b.toString();
+  if (checkStackA == '4,3,2,1') {
+    return true
+  } else if (checkStackB == '4,3,2,1'){
+    return true
   } else return false
 }
 
-function towersOfHanoi(startStack, endStack) {
+const reset = () => {
+  stacks.a = [1, 2, 3, 4];
+  stacks.b = [];
+  stacks.c = [];
+}
+
+const towersOfHanoi = (startStack, endStack) => {
   if (validate(startStack, endStack)) {
     if (isLegal(startStack, endStack)) {
       movePiece(startStack, endStack);
       if (checkForWin()) {
-        return 'win!'
-      }
+        console.log('WIN!') 
+        reset();    }
     } else {
-      return 'invalid'
+      console.log('invalid')
     } 
-  } else return 'invalid'
+  } else console.log('invalid')
 }
 
-function getPrompt() {
+const getPrompt = () => {
   printStacks();
   rl.question('start stack: ', (startStack) => {
     rl.question('end stack: ', (endStack) => {
@@ -84,6 +93,8 @@ if (typeof describe === 'function') {
     it('should be able to move a block', () => {
       towersOfHanoi('a', 'b');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
+      towersOfHanoi('a', 'c');
+      assert.deepEqual(stacks, { a: [4, 3, 2], b: [], c: [1] });
     });
   });
 
@@ -95,7 +106,20 @@ if (typeof describe === 'function') {
         c: []
       };
       assert.equal(isLegal('a', 'b'), false);
+      stacks = {
+        a: [4, 3],
+        b: [2],
+        c: [1]
+      };
+      assert.equal(isLegal('a', 'c'), false);
+      stacks = {
+        a: [4, 1],
+        b: [3],
+        c: [2]
+      };
+      assert.equal(isLegal('b', 'c'), false);
     });
+
     it('should allow a legal move', () => {
       stacks = {
         a: [4, 3, 2, 1],
@@ -103,8 +127,15 @@ if (typeof describe === 'function') {
         c: []
       };
       assert.equal(isLegal('a', 'c'), true);
+      stacks = {
+        a: [4, 3],
+        b: [2],
+        c: [1]
+      };
+      assert.equal(isLegal('c', 'b'), true);
     });
   });
+  
   describe('#checkForWin()', () => {
     it('should detect a win', () => {
       stacks = { a: [], b: [4, 3, 2, 1], c: [] };
