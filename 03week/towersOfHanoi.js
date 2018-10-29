@@ -19,24 +19,51 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
-
+function movePiece(startStack, endStack){
+  let endNum = stacks[startStack].pop();
+  stacks[endStack].push(endNum);
 }
 
-function isLegal() {
-  // Your code here
+const validInput = ['a', 'b', 'c'];
 
+const checkInput = (input) => {
+  return validInput.indexOf(input) != -1
+}
+
+const validate = (startStack, endStack) => {
+  return checkInput(startStack) && checkInput(endStack)
+}
+
+function isLegal(startStack, endStack) {
+  let startStackValue = stacks[startStack][stacks[startStack].length - 1];
+  let endStackValue = stacks[endStack][stacks[endStack].length - 1];
+  if (startStack == endStack) {
+    return false
+  } else if (startStackValue > endStackValue) {
+    return false
+  } else if (startStackValue == undefined) {
+    return false
+  } else return true
 }
 
 function checkForWin() {
-  // Your code here
-
+  let checkStack = stacks.c.toString();
+  if (checkStack == '4,3,2,1') {
+    return 'win'
+  } else return false
 }
 
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
-
+  if (validate(startStack, endStack)) {
+    if (isLegal(startStack, endStack)) {
+      movePiece(startStack, endStack);
+      if (checkForWin()) {
+        return 'win!'
+      }
+    } else {
+      return 'invalid'
+    } 
+  } else return 'invalid'
 }
 
 function getPrompt() {
