@@ -106,6 +106,8 @@ if (typeof describe === 'function') {
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
       // towersOfHanoi('a', 'c');
       // assert.deepEqual(stacks, { a: [4, 3, 2], b: [], c: [1] });
+      //not sure why this test doesn't work, it seems like it should run just like the one above
+      //but when I ran the tests in the terminal, this one failed
     });
   });
 
