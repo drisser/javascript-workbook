@@ -19,22 +19,29 @@ const printStacks = () => {
   console.log("c: " + stacks.c);
 }
 
-//this function 
+//this function moves the pieces (4,3,2,1) between the three arrays (a,b,c) but using .pop and .push
 const movePiece = (startStack, endStack) => {
   let endNum = stacks[startStack].pop();
   stacks[endStack].push(endNum);
 }
 
+//this array shows the three valid user inputs when playing the game
 const validInput = ['a', 'b', 'c'];
 
+//this function checks to see if the user input matches the three possible valid inputs according to the validInput array
 const checkInput = (input) => {
   return validInput.indexOf(input) != -1
 }
 
+//this function calls the previous checkInput function twice, once for each user input (startStack, endStack)
 const validate = (startStack, endStack) => {
   return checkInput(startStack) && checkInput(endStack)
 }
 
+//this function makes sure that the move is legal according to the game rules
+//it ensures that the stack being moved is smaller than the stack already in place in the destination
+//it also ensures that an empty starting position (which returns undefined) cannot be moved somewhere else
+//it also makes sure that the user doesn't enter the same position as both the starting and ending position
 const isLegal = (startStack, endStack) => {
   let startStackValue = stacks[startStack][stacks[startStack].length - 1];
   let endStackValue = stacks[endStack][stacks[endStack].length - 1];
