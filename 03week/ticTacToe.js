@@ -19,14 +19,12 @@ const isPositionOpen = (row, column) => {
 }
 
 //take user input and turn it into either an X or an O on the board - function placeMove = board[1][1] = 'X'
-const placeMoveX = (row, column) => {
-  board[row][column] = 'X';
-  console.log(board);
-}
-
-const placeMoveO = (row, column) => {
-  board[row][column] = 'O';
-  console.log(board);
+const placeMove = (row, column) => {
+  if (playerTurn == 'X') {
+    board[row][column] = 'X';
+  } else { 
+    board[row][column] = 'O';
+  }  
 }
 
 //check for win using win conditions listed below
@@ -95,9 +93,9 @@ function checkForWin() {
 //if no win is determined, switch players and rerun the function
 const changePlayer = () =>{
   if (playerTurn == 'X'){
-    let playerTurn = 'O'
+    playerTurn = 'O'
   } else if (playerTurn = 'O'){
-    let playerTurn = 'X'
+    playerTurn = 'X'
   }
 }
 
@@ -128,27 +126,17 @@ function printBoard() {
 function ticTacToe(row, column) {
   if (validate(row, column)){
     if (isPositionOpen(row, column)){
-      if (playerTurn == 'X'){
-        placeMoveX(row, column);
-      } else {
-        placeMoveO(row, column);
-      }
-      
+      placeMove(row, column);
     } else {
-      return 'that position is not open'
+      console.log('invalid position')
     }  
   } else {
-    return ' please enter a valid position'
+    console.log('wrong position')
   } 
   if (checkForWin()){
-    return playerTurn + ' wins!'
+    console.log(playerTurn + ' wins!')
   } else changePlayer();
-
 }
-
-// getPrompt();
-
-
 
 function getPrompt() {
   printBoard();
@@ -159,7 +147,6 @@ function getPrompt() {
       getPrompt();
     });
   });
-
 }
 
 
