@@ -5,12 +5,10 @@
 //validate the user input - it must be equal to either 0, 1, or 2
 const validInputArr = [0, 1, 2]
 
-const checkInput = (input) => {
-  return validInputArr.indexOf(input) != -1
-}
-
 const validate = (row, column) => {
-  return checkInput(row) && checkInput(column)
+  if ((row == 0 || 1 || 2) && (column = 0 || 1 || 2)){
+    return true
+  }
 }
 
 //check to see if the selected row and column are occupied or not - function isPositionOpen = if index[row][column] != ''
