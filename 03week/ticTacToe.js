@@ -3,12 +3,10 @@
 //MY CODE PLAN!
 
 //validate the user input - it must be equal to either 0, 1, or 2
-const validInputArr = [0, 1, 2]
-
 const validate = (row, column) => {
-  if ((row == 0 || 1 || 2) && (column = 0 || 1 || 2)){
+  if ((row == 0) || (row = 1) || (row == 2) && (row == 0) || (row = 1) || (row = 2)){
     return true
-  }
+  } 
 }
 
 //check to see if the selected row and column are occupied or not - function isPositionOpen = if index[row][column] != ''
