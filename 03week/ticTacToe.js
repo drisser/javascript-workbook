@@ -4,9 +4,11 @@
 
 //validate the user input - it must be equal to either 0, 1, or 2
 const validate = (row, column) => {
-  if ((row == 0) || (row = 1) || (row == 2) && (row == 0) || (row = 1) || (row = 2)){
-    return true
-  } 
+  if ((row == 0) || (row == 1) || (row == 2)){
+    if ((column == 0) || (column == 1) || (column == 2)){
+      return true
+    } else return false
+  } return false 
 }
 
 //check to see if the selected row and column are occupied or not - function isPositionOpen = if index[row][column] != ''
@@ -127,7 +129,7 @@ function ticTacToe(row, column) {
       console.log('invalid position')
     }  
   } else {
-    console.log('wrong position')
+    console.log('invalid entry')
   } 
   if (checkForWin()){
     console.log(playerTurn + ' wins!')
