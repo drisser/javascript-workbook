@@ -38,6 +38,23 @@ function generateHint() {
   // your code here
 }
 
+const showHints=(guess)=>{
+  const guessArr = guess.split('');
+  const solutionArr = solution.split('');
+  let rightLetterRightPlace = 0;
+  let rightLetterWrongPlace = 0;
+  guessArr.forEach((letter, index)=>{
+    console.log(letter, 'current');
+    const correspondingLetter = solutionArr[index];
+    if (letter == correspondingLetter){
+      rightLetterRightPlace ++
+    } else if (solutionArr.includes(letter)){
+      rightLetterWrongPlace ++
+    } 
+  });
+  return `${rightLetterRightPlace} - ${rightLetterWrongPlace}`
+}
+
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
   if (inputIsValid(guess)){
@@ -52,6 +69,8 @@ function mastermind(guess) {
     } else {
       generateHint();
     }
+  } else {
+    //tell the user what type of input they need to enter
   }
 }
 
