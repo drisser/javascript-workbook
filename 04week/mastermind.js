@@ -24,6 +24,12 @@ function generateSolution() {
   }
 }
 
+const inputIsValid = (guess) => {
+  // returns true or false
+  // checks to see if the user input is 4 letters
+  // checks to see if the user input matches the array of possible letters
+}
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -34,7 +40,19 @@ function generateHint() {
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
+  if (inputIsValid(guess)){
+    board.push(guess)
+    if (checkForWin(guess)){
+      //tell the user they won
+      resetBoard();
+    } else if (!hasGuessesRemaining()){
+      //tell the user they lost
+      //Print solution
+      resetBoard();
+    } else {
+      generateHint();
+    }
+  }
 }
 
 
