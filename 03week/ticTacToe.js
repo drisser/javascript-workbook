@@ -1,5 +1,102 @@
 'use strict';
 
+//MY CODE PLAN!
+
+//validate the user input - it must be equal to either 0, 1, or 2
+const validate = (row, column) => {
+  if ((row == 0) || (row == 1) || (row == 2)){
+    if ((column == 0) || (column == 1) || (column == 2)){
+      return true
+    } else return false
+  } return false 
+}
+
+//check to see if the selected row and column are occupied or not - function isPositionOpen = if index[row][column] != ''
+const isPositionOpen = (row, column) => {
+  return board[row][column] == ' '
+}
+
+//take user input and turn it into either an X or an O on the board - function placeMove = board[1][1] = 'X'
+const placeMove = (row, column) => {
+  if (playerTurn == 'X') {
+    board[row][column] = 'X';
+  } else { 
+    board[row][column] = 'O';
+  }  
+}
+
+//check for win using win conditions listed below
+function horizontalWin() {
+  if ((board[0][0] == 'X') && (board[0][1] == 'X') && (board[0][2] == 'X')){
+    return true
+  } else if ((board[1][0] =='X') && (board[1][1] == 'X') && (board[1][2] == 'X')){
+    return true
+  } else if ((board[2][0] == 'X') && (board[2][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[0][1] == 'O') && (board[0][2] == 'O')){
+    return true
+  } else if ((board[1][0] =='O') && (board[1][1] == 'O') && (board[1][2] == 'O')){
+    return true
+  } else if ((board[2][0] == 'O') && (board[2][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+function verticalWin() {
+  if ((board[0][0] == 'X') && (board[1][0] == 'X')  && (board[2][0] == 'X')){
+    return true
+  } else if ((board[0][1] == 'X') && (board[1][1] == 'X') && (board[2][1] == 'X')){
+    return true
+  } else if ((board[0][2] == 'X') && (board[1][2] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[1][0] == 'O')  && (board[2][0] == 'O')){
+    return true
+  } else if ((board[0][1] == 'O') && (board[1][1] == 'O') && (board[2][1] == 'O')){
+    return true
+  } else if ((board[0][2] == 'O') && (board[1][2] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+function diagonalWin() {
+  if ((board[0][2] == 'X') && (board[1][1] == 'X') && (board[2][0] == 'X')){
+    return true
+  } else if ((board[0][0] == 'X') && (board[1][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][2] == 'O') && (board[1][1] == 'O') && (board[2][0] == 'O')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[1][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+function checkForWin() {
+  if (diagonalWin()){
+    return true
+  } else if (horizontalWin()){
+    return true
+  } else if (verticalWin()){
+    return true
+  } else {
+    return false
+  }
+}
+
+//if no win is determined, switch players and rerun the function
+const changePlayer = () =>{
+  if (playerTurn == 'X'){
+    playerTurn = 'O'
+  } else if (playerTurn = 'O'){
+    playerTurn = 'X'
+  }
+}
+
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -23,24 +120,20 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-function horizontalWin() {
-  // Your code here
-}
-
-function verticalWin() {
-  // Your code here
-}
-
-function diagonalWin() {
-  // Your code here
-}
-
-function checkForWin() {
-  // Your code here
-}
-
+//here is my full function pulling all the other small functions together
 function ticTacToe(row, column) {
-  // Your code here
+  if (validate(row, column)){
+    if (isPositionOpen(row, column)){
+      placeMove(row, column);
+    } else {
+      console.log('invalid position')
+    }  
+  } else {
+    console.log('invalid entry')
+  } 
+  if (checkForWin()){
+    console.log(playerTurn + ' wins!')
+  } else changePlayer();
 }
 
 function getPrompt() {
@@ -52,7 +145,6 @@ function getPrompt() {
       getPrompt();
     });
   });
-
 }
 
 
