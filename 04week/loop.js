@@ -19,7 +19,7 @@ const actualForLoop = () =>{
 // lastName: "Doe"
 // birthDate: "Jan 5, 1925"
 // gender: "female"
- 
+  
 const myObject = {
   firstName: "Jane",
   lastName: "Doe",
