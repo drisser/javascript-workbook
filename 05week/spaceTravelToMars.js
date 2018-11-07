@@ -1,6 +1,4 @@
-'use strict';
-
-let assert = require('assert');
+'use strict'
 
 let jobTypes = {
   pilot: 'MAV',
@@ -9,7 +7,50 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
+class CrewMember {
+  constructor(name, job, specialSkill, ship){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+  enterShip(ship){
+    this.ship = ship;
+    ship.crew.push(this.name);
+  }
+}
+
+class Ship {
+  constructor(name, type, ability, crew){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+  printMissionStatement(){
+    if (this.crew.length == 1){
+      console.log(this.ability)
+    } else {
+      console.log("Can't perform a mission yet.")
+    }
+  }
+}
+
+let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry')
+
+let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+
+let crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology')
+
+let hermes = new Ship('Heremes', 'Main Ship', 'Interplanetary Space Travel')
+
+// crewMember1.enterShip(mav);
+
+// mav.printMissionStatement();
+
+// crewMember2.enterShip(hermes);
+
+// hermes.printMissionStatement();
 
 //tests
 if (typeof describe === 'function'){
