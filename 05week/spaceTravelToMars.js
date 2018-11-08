@@ -18,7 +18,7 @@ class CrewMember {
   }
   enterShip(ship){
     this.ship = ship;
-    ship.crew.push(this.name);
+    ship.crew.push(this);
   }
 }
 
