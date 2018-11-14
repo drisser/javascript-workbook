@@ -1,5 +1,22 @@
 'use strict';
 
+// for loop places pieces on the board depending on even vs odd rows
+// validate move based on greater than or less than, each player can only move either up or down, towards higher or lower number rows/columns
+// write a for loop for each array to set up the board (for each even space, place a piece)
+// each color can only move in one direction (use greater than or less than)
+// you can't jump your own player
+// put checkers on board
+// 12 white checkers, 12 red checkers
+// switch between two players
+// change space to null after piece has been jumped
+// check for win (all of one type of checker is gone/has been jumped/null)
+// valid move function (can't move to a full spot or white spot)
+// reset board function
+
+// take in a input
+// split the input
+
+
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
