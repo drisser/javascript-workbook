@@ -37,8 +37,13 @@ const some = (arr, callback) => {
   }
 }
 
-function every(arr, callback) {
-  // Your code here
+const every = (arr, callback) => {
+  for (let i = 0; i < arr.length; i++){
+    if (!callback(arr[i])){
+      return false
+    }
+  } 
+  return true
 }
 
 if (typeof describe === 'function') {
