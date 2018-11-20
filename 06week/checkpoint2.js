@@ -122,6 +122,6 @@ console.log(weatherStates)
 
 weather.forEach(function(state){
   if (state['min_temp'] == 15.915){
-      console.log(state['id'])
+    console.log(state['id'])
   }
 });
