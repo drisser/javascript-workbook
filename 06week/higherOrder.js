@@ -4,7 +4,7 @@ const assert = require('assert');
 
 const forEach = (arr, callback) => {
   for (let i = 0; i < arr.length; i++){
-    callback();
+    callback(arr[i]);
   }
 }
 
