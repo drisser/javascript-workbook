@@ -18,7 +18,7 @@ class CrewMember {
   }
   enterShip(ship){
     this.ship = ship;
-    ship.crew.push(this);
+    ship.crew.push(this.name);
   }
 }
 
@@ -38,13 +38,15 @@ class Ship {
   }
 }
 
-let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry')
+const crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry')
 
-let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+const mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
 
-let crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology')
+const crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology')
 
-let hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel')
+const hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel')
+
+crewMember1.enterShip(mav)
 
 //tests
 if (typeof describe === 'function'){
