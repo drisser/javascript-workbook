@@ -20,7 +20,7 @@ const printStacks = () => {
 }
 
 const movePiece = (startStack, endStack) => {
-  let endNum = stacks[startStack].pop();
+  const endNum = stacks[startStack].pop();
   stacks[endStack].push(endNum);
 }
 
@@ -35,8 +35,8 @@ const validate = (startStack, endStack) => {
 }
 
 const isLegal = (startStack, endStack) => {
-  let startStackValue = stacks[startStack][stacks[startStack].length - 1];
-  let endStackValue = stacks[endStack][stacks[endStack].length - 1];
+  const startStackValue = stacks[startStack][stacks[startStack].length - 1];
+  const endStackValue = stacks[endStack][stacks[endStack].length - 1];
   if (startStack == endStack) {
     return false
   } else if (startStackValue > endStackValue) {
@@ -47,8 +47,8 @@ const isLegal = (startStack, endStack) => {
 }
 
 const checkForWin = () => {
-  let checkStackA = stacks.c.toString();
-  let checkStackB = stacks.b.toString();
+  const checkStackA = stacks.c.toString();
+  const checkStackB = stacks.b.toString();
   if (checkStackA == '4,3,2,1') {
     return true
   } else if (checkStackB == '4,3,2,1'){
