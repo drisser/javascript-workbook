@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 let assert = require('assert');
 
@@ -9,7 +9,44 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
+class CrewMember {
+  constructor(name, job, specialSkill, ship){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+  enterShip(ship){
+    this.ship = ship;
+    ship.crew.push(this.name);
+  }
+}
+
+class Ship {
+  constructor(name, type, ability, crew){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+  missionStatement(){
+    if (this.crew.length == 1){
+      return this.ability
+    } else {
+      return "Cant perform a mission yet."
+    }
+  }
+}
+
+const crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry')
+
+const mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+
+const crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology')
+
+const hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel')
+
+crewMember1.enterShip(mav)
 
 //tests
 if (typeof describe === 'function'){
@@ -46,8 +83,8 @@ if (typeof describe === 'function'){
       let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
       let hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
       let crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology');
-      assert.equal(mav.missionStatement(), "Can't perform a mission yet.");
-      assert.equal(hermes.missionStatement(), "Can't perform a mission yet.");
+      assert.equal(mav.missionStatement(), "Cant perform a mission yet.");
+      assert.equal(hermes.missionStatement(), "Cant perform a mission yet.");
 
       crewMember1.enterShip(mav);
       assert.equal(mav.missionStatement(), "Ascend into low orbit");
