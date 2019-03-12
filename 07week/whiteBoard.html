@@ -1,0 +1,19 @@
+state = {
+    input: '',
+    list: [],
+    test: ''
+}
+
+onChange = (e) =>{
+    this.setState({
+        input: e.target.value
+    })
+}
+
+onSubmit = (e) =>{
+    e.preventDefault()
+    this.setState({
+        list: [thislstatelinput, this.state.input],
+        input: ''
+    })
+}
